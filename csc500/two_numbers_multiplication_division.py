@@ -1,3 +1,5 @@
+print('Note : Enter the numbers either in Integer or Decimal format')
+print('')
 
 num1 = float(input("Enter the first number (numerator for Division operation) : "))
 
