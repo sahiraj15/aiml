@@ -18,6 +18,9 @@ elif tup_currtime_alarmtime[0] > 23 or tup_currtime_alarmtime[0] < 0:
 elif tup_currtime_alarmtime[1] < 1:
     raise "Invalid alarm time in hours, it must be greater than 0."
 else:
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # Evaluate the clock time on alarm off
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     sum_of_time_in_hours = tup_currtime_alarmtime[0] + tup_currtime_alarmtime[1]
     time_on_alarm_time = sum_of_time_in_hours % 24
 
