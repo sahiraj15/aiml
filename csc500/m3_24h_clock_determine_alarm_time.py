@@ -13,7 +13,7 @@ if (tup_currtime_alarmtime[0] - math.trunc(tup_currtime_alarmtime[0])) > 0:
     raise "Please enter the current time in integer format only."
 elif (tup_currtime_alarmtime[1] - math.trunc(tup_currtime_alarmtime[1])) > 0:
     raise "Please enter the alarm time in integer format only."
-elif tup_currtime_alarmtime[0] > 23:
+elif tup_currtime_alarmtime[0] > 23 or tup_currtime_alarmtime[0] < 0:
     raise "Invalid current time in hours, it must be in between 0-23."
 elif tup_currtime_alarmtime[1] < 1:
     raise "Invalid alarm time in hours, it must be greater than 0."
