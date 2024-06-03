@@ -24,4 +24,4 @@ else:
     sum_of_time_in_hours = tup_currtime_alarmtime[0] + tup_currtime_alarmtime[1]
     time_on_alarm_time = sum_of_time_in_hours % 24
 
-    print("The alarms goes off at {}:00.".format(math.trunc(time_on_alarm_time)))
+    print("The alarm goes off at {}:00.".format(math.trunc(time_on_alarm_time)))
