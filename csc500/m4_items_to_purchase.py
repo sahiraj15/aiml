@@ -24,6 +24,7 @@ class ItemToPurchase:
         print("{} {} @ ${} = ${}".format(self.item_name, self.item_quantity, self.item_price, self.total_cost))
 
 
+# Main program starts here
 if __name__ == "__main__":
     item_list = []
 
