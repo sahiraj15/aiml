@@ -19,9 +19,10 @@ class ItemToPurchase:
     def print_item_cost(self):
         if self.item_price - math.trunc(self.item_price) > 0:
             self.total_cost = self.item_quantity * self.item_price
+            print("{} {} @ ${} = ${}".format(self.item_name, self.item_quantity, self.item_price, self.total_cost))
         else:
             self.total_cost = self.item_quantity * int(self.item_price)
-        print("{} {} @ ${} = ${}".format(self.item_name, self.item_quantity, self.item_price, self.total_cost))
+            print("{} {} @ ${} = ${}".format(self.item_name, self.item_quantity, int(self.item_price), self.total_cost))
 
 
 # Main program starts here
@@ -47,14 +48,13 @@ if __name__ == "__main__":
         raise "Item2 quantity shall be a positive integer value."
 
     print("")
+    print("TOTAL COST")
     purchase_items1 = ItemToPurchase()
     purchase_items1.set_item_comps(item_list[0]["item_name1"], item_list[0]["item_price1"], item_list[0]["item_quant1"])
 
-    print("")
     purchase_items2 = ItemToPurchase()
     purchase_items2.set_item_comps(item_list[1]["item_name2"], item_list[1]["item_price2"], item_list[1]["item_quant2"])
 
-    print("")
     purchase_items1.print_item_cost()
     purchase_items2.print_item_cost()
     total_purchase_cost = purchase_items1.total_cost + purchase_items2.total_cost
