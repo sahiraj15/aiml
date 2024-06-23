@@ -22,10 +22,10 @@ elif purchased_quantity < 8:
 else:
     number_of_loyal_points = 60
 
-if purchased_quantity > 1:
-    book_string = 'books'
-else:
+if purchased_quantity == 1:
     book_string = 'book'
+else:
+    book_string = 'books'
 
 print("")
 print("You purchased {} {} in this month.".format(purchased_quantity, book_string))
