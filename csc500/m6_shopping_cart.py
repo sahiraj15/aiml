@@ -168,6 +168,6 @@ if __name__ == "__main__":
             sc.print_total(option)
             break
         else:
-            print("Enter a valid option. ")
+            print("Enter a valid item option. ")
 
         print("")
