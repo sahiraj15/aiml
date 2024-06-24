@@ -3,7 +3,7 @@ import regex as re
 
 
 class ShoppingCart:
-    def __init__(self, customer_name, shopping_date):
+    def __init__(self, customer_name: None, shopping_date):
         self.customer_name = customer_name
         self.shopping_date = shopping_date
         self.cart_items = []
