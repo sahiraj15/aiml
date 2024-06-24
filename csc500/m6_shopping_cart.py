@@ -73,7 +73,6 @@ class ShoppingCart:
             if operation != 'r' and operation != 'c':
                 print("OUTPUT SHOPPING CART")
                 print("{}'s Shopping Cart - {}".format(self.customer_name, self.shopping_date))
-                print("Items Description")
                 print("Number of Items: {}".format(self.total_quantity))
 
             for item, details in self.item_details.items():
@@ -81,8 +80,6 @@ class ShoppingCart:
                     print("{} {} @${} = ${}".format(item, details['quantity'], details['price'], details['quantity'] * details['price']))
         else:
             print("SHOPPING CART IS EMPTY")
-
-        print("")
 
     def print_descriptions(self):
         print("")
@@ -104,6 +101,9 @@ if __name__ == "__main__":
         sc.print_menu()
 
         option = input("Choose an option: ")
+        sc.get_num_items_in_cart()
+        sc.get_cost_of_cart()
+
         if re.search('[acior]', option):
             print("")
 
@@ -121,9 +121,6 @@ if __name__ == "__main__":
                     print("Enter a valid purchase item, available items are: ")
                     sc.print_descriptions()
             elif option == 'r':
-                sc.get_num_items_in_cart()
-                sc.get_cost_of_cart()
-
                 if sc.total_quantity != 0:
                     print("Items in the cart are:")
                     sc.print_total(option)
@@ -133,10 +130,6 @@ if __name__ == "__main__":
 
                 sc.remove_item(input("Enter the item name to be removed: "))
             elif option == 'c':
-                sc.get_num_items_in_cart()
-                sc.get_cost_of_cart()
-
-                print("Total Items : {}".format(sc.total_quantity))
                 if sc.total_quantity != 0:
                     print("Items in the cart are:")
                     sc.print_total(option)
@@ -162,6 +155,7 @@ if __name__ == "__main__":
                 sc.get_num_items_in_cart()
                 sc.get_cost_of_cart()
                 sc.print_total(option)
+                print("Total: ${}".format(sc.total_cost))
             else:
                 pass
         elif re.search('[q]', option):
