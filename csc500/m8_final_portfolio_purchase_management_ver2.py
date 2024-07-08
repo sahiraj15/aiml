@@ -57,20 +57,24 @@ class ShoppingCart:
     def modify_item_values(self, curr_item_name, current_item_desc, curr_item_price, curr_item_quantity):
         print(curr_item_name, "elements before changes: {}".format(self.item_line[curr_item_name]))
 
+        price_ind = (-100 if str(curr_item_price).upper() != 'N' else 0)
+        quant_ind = (-100 if str(curr_item_quantity).upper() != 'N' else 0)
+
         modify_indicator = False
         if current_item_desc.upper() != 'N' and current_item_desc != self.item_line[curr_item_name]['description']:
             self.item_line[curr_item_name]['description'] = current_item_desc
             modify_indicator = True
 
-        elif curr_item_price.upper() != 'N' and float(curr_item_price) != self.item_line[curr_item_name]['price']:
+        if price_ind == -100 and curr_item_price != str(self.item_line[curr_item_name]['price']):
             self.item_line[curr_item_name]['price'] = float(curr_item_price)
             modify_indicator = True
 
-        elif curr_item_quantity.upper() != 'N' and float(curr_item_quantity) != self.item_line[curr_item_name]['quantity']:
-            self.item_line[curr_item_name]['quantity'] = float(curr_item_quantity)
+        if quant_ind == -100 and curr_item_quantity != str(self.item_line[curr_item_name]['quantity']):
+            print("Inside the loop: {} | {}".format(int(curr_item_quantity), self.item_line[curr_item_name]['quantity']))
+            self.item_line[curr_item_name]['quantity'] = int(curr_item_quantity)
             modify_indicator = True
 
-        else:
+        if not modify_indicator:
             print("No changes identified to the item: {}\n".format(curr_item_name))
 
         print(curr_item_name, "elements post changes: {}\n".format(self.item_line[curr_item_name])) if modify_indicator else None
@@ -121,7 +125,7 @@ class ShoppingCart:
             print("SHOPPING CART IS EMPTY\n")
 
     def print_item_descriptions(self, operation):
-        print("\nItem Descriptions") if operation == 'o' else False
+        print("\nItem Descriptions") if operation == 'i' or operation == 'o' else False
         for item, details in self.item_line.items():
             print("{}: {}".format(item, details['description']))
         print("")
@@ -144,13 +148,13 @@ if __name__ == "__main__":
 
     print("\nItem1")
     item_name1 = input("Enter the item name: \n")
-    item_desc1 = input("Enter the item description: \n")
+    # item_desc1 = input("Enter the item description: \n")
     item_price1 = input("Enter the item price: \n")
     item_quant1 = input("Enter the item quantity: \n")
 
     print("\nItem2")
     item_name2 = input("Enter the item name: \n")
-    item_desc2 = input("Enter the item description: \n")
+    # item_desc2 = input("Enter the item description: \n")
     item_price2 = input("Enter the item price: \n")
     item_quant2 = input("Enter the item quantity: \n")
 
@@ -164,8 +168,8 @@ if __name__ == "__main__":
     elif int(item_quant2) <= 0:
         raise "Item2 quantity shall be a positive integer value."
 
-    items.add_item(item_name1, item_desc1, item_price1, item_quant1)
-    items.add_item(item_name2, item_desc2, item_price2, item_quant2)
+    items.add_item(item_name1, 'Item1 description', item_price1, item_quant1)
+    items.add_item(item_name2, 'Item2 description', item_price2, item_quant2)
     items.print_item_wise_cost_summary()
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -178,8 +182,9 @@ if __name__ == "__main__":
 
     print("")
     user_name = input("Enter customer's name: \n")
-    invoice_date = datetime.strptime(input("Enter today's date('YYYY-MM-DD'): \n"), '%Y-%m-%d')
-    cart_date = invoice_date.strftime('%B %d, %Y')
+    cart_date = input("Enter today's date: \n")
+    # invoice_date = datetime.strptime(input("Enter today's date('YYYY-MM-DD'): \n"), '%Y-%m-%d')
+    # cart_date = invoice_date.strftime('%B %d, %Y')
 
     # Set instance parameters and print the item description
     sc = ShoppingCart(user_name, cart_date, items.item_line)
